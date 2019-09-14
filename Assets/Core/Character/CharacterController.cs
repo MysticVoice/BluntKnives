@@ -17,26 +17,26 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        walk();
-        turn();
-        jump();
+        walk(Input.GetAxis("Vertical"));
+        turn(Input.GetAxis("Horizontal"));
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump();
+        }
     }
 
-    void turn()
+    void turn(float input)
     {
-        rb.AddTorque(Input.GetAxis("Horizontal") * transform.up * turnSpeed, ForceMode.VelocityChange);
+        rb.AddTorque(input * transform.up * turnSpeed, ForceMode.VelocityChange);
     }
 
-    void walk()
+    void walk(float input)
     {
-        rb.AddForce(Input.GetAxis("Vertical") * transform.forward * movementSpeed, ForceMode.VelocityChange);
+        rb.AddForce(input * transform.forward * movementSpeed, ForceMode.VelocityChange);
     }
 
     void jump()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            rb.AddForce(transform.up * jumpForce,ForceMode.Impulse);
-        }
+        rb.AddForce(transform.up * jumpForce,ForceMode.Impulse);
     }
 }
