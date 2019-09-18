@@ -16,8 +16,11 @@ public class Health : MonoBehaviour
 
     }
 
+    private int _maxH = 100, _H = 100; //health and max health whith a default value of 100
 
-    private int _H, _maxH; //health and max health
+    
+    Health() { } //if the health class is called without a variable it will keep the default values for health and max health
+
 
     Health(int maxH)    //when the Health class is called for the first time in a context you will eider provide both Current health and maxHealth or just maxHealth which will defoult Health to maxHealth
     {
@@ -98,7 +101,7 @@ public class Health : MonoBehaviour
 
     }
 
-    int Heal(int H)
+    int Heal(int H) //self explanatory
     {
 
         setHealth(getHealth() + H);
@@ -106,7 +109,7 @@ public class Health : MonoBehaviour
         return 0;
     }
 
-    int Damage(int D)
+    int Damage(int D) //self explanatory
     {
 
         setHealth(getHealth() - D);
