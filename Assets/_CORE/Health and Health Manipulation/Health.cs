@@ -16,10 +16,10 @@ public class Health : MonoBehaviour
 
     }
 
-    private int _maxH = 100, _H = 100; //health and max health whith a default value of 100
+    private static int _maxH = 100, _H = 100; //health and max health whith a default value of 100
 
-    
-    Health() { } //if the health class is called without a variable it will keep the default values for health and max health
+
+    /*Health() { } //if the health class is called without a variable it will keep the default values for health and max health
 
 
     Health(int maxH)    //when the Health class is called for the first time in a context you will eider provide both Current health and maxHealth or just maxHealth which will defoult Health to maxHealth
@@ -49,44 +49,59 @@ public class Health : MonoBehaviour
 
         }
 
-    }
+    }*/
 
-    int getHealth() //self explanatory
+    public static int setMaxHealth(int maxH) //for level-ups and sutch also constrains maxhealth from 0 to 2147483647 (aka max int value)
     {
-        return _H;
-    }
-    int getMaxHealth() //if you wuld ever need it
-    {
-        return _maxH;
-    }
-
-    int setHealth(int H) //self explanatory
-    {
-
-        if (H <= _maxH)
+        if (maxH < 1)
         {
-
-            _H = H;
-
+            _maxH = 1;
         }
 
         else
+        {
+            _maxH = maxH;
+        }
+        
+        return 0;
+    }
+
+    public static int setHealth(int H) //self explanatory also constrains health from 0 to maxHealth (aka max int value)
+    {
+
+        if (H >= _maxH)
         {
 
             _H = _maxH;
 
         }
 
+        else if (H < 0)
+        {
+
+            _H = 0;
+
+        }
+
+        else
+        {
+            _H = H;
+        }
+
         return 0;
     }
 
-    int setMaxHealth(int maxH) //for level-ups and sutch
+    public static int getMaxHealth() //if you wuld ever need it
     {
-        _maxH = maxH;
-        return 0;
+        return _maxH;
     }
 
-    bool alive() // quick way to check if you are alive
+    public static int getHealth() //self explanatory
+    {
+        return _H;
+    }
+
+    public static bool alive() // quick way to check if you are alive
     {
 
         if (getHealth() > 0)
@@ -99,22 +114,6 @@ public class Health : MonoBehaviour
             return false;
         }
 
-    }
-
-    int Heal(int H) //self explanatory
-    {
-
-        setHealth(getHealth() + H);
-
-        return 0;
-    }
-
-    int Damage(int D) //self explanatory
-    {
-
-        setHealth(getHealth() - D);
-
-        return 0;
     }
 
 }
