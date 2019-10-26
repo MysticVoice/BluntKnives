@@ -11,7 +11,7 @@ public class CameraFollowDirectional : MonoBehaviour
     public float maxDist;
     public Transform lookTarget;
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         zoomCamera(0);
         Vector3 dPos = cameraTarget.position;
