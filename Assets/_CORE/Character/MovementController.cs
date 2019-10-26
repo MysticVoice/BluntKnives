@@ -44,6 +44,7 @@ public class MovementController : MonoBehaviour
         //Vertical Movement
         computeVerticalMovement();
         controller.Move(movDir * Time.deltaTime);
+        movDir = controller.velocity;
     }
 
     private void turn()
